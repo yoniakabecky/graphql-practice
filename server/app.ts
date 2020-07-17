@@ -3,10 +3,11 @@ import express from "express";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
 import BookResolver from "./resolvers/BookResolver";
+import AuthorResolver from "./resolvers/AuthorResolver";
 
 async function start() {
   const schema = await buildSchema({
-    resolvers: [BookResolver],
+    resolvers: [BookResolver, AuthorResolver],
   });
 
   const app = express();
