@@ -5,6 +5,7 @@
 
 type Author {
   age: Float!
+  books: [Book!]!
   id: ID!
   name: String!
 }

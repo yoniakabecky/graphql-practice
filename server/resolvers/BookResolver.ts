@@ -2,7 +2,7 @@ import { Resolver, Query, Arg, FieldResolver, Root } from "type-graphql";
 import { books, BookType, authors } from "../data";
 import Book from "../schema/Book";
 
-@Resolver((of) => Book)
+@Resolver(() => Book)
 export default class {
   @Query(() => [Book])
   books(): BookType[] {
