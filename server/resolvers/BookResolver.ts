@@ -1,16 +1,23 @@
-import { Resolver, Query, Arg } from "type-graphql";
-import { books, BookType } from "../data";
+import { Resolver, Query, Arg, FieldResolver, Root } from "type-graphql";
+import { books, BookType, authors } from "../data";
 import Book from "../schema/Book";
 
-@Resolver()
+@Resolver((of) => Book)
 export default class {
   @Query(() => [Book])
-  fetchBooks(): BookType[] {
+  books(): BookType[] {
     return books;
   }
 
   @Query(() => Book, { nullable: true })
-  bookById(@Arg("id") id: string): BookType | undefined {
+  book(@Arg("id") id: string): BookType | undefined {
     return books.find((book) => book.id === id);
+  }
+
+  @FieldResolver()
+  author(@Root() bookData: BookType) {
+    return authors.find((author) => {
+      return author.id === bookData.authorId;
+    });
   }
 }

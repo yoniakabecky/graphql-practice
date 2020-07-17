@@ -1,4 +1,5 @@
 import { Field, ObjectType, ID } from "type-graphql";
+import Author from "./Author";
 
 @ObjectType()
 export default class Book {
@@ -10,4 +11,7 @@ export default class Book {
 
   @Field()
   genre: string;
+
+  @Field()
+  author: Author;
 }

@@ -5,12 +5,12 @@ import Author from "../schema/Author";
 @Resolver()
 export default class {
   @Query(() => [Author])
-  fetchAuthors(): AuthorType[] {
+  authors(): AuthorType[] {
     return authors;
   }
 
   @Query(() => Author, { nullable: true })
-  authorById(@Arg("id") id: string): AuthorType | undefined {
+  author(@Arg("id") id: string): AuthorType | undefined {
     return authors.find((author) => author.id === id);
   }
 }

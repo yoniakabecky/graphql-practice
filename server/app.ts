@@ -8,6 +8,7 @@ import AuthorResolver from "./resolvers/AuthorResolver";
 async function start() {
   const schema = await buildSchema({
     resolvers: [BookResolver, AuthorResolver],
+    emitSchemaFile: true,
   });
 
   const app = express();
