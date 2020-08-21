@@ -4,7 +4,7 @@ import Author from "./Author";
 @ObjectType()
 export default class Book {
   @Field(() => ID)
-  id: string;
+  id: number;
 
   @Field()
   name: string;
@@ -12,6 +12,6 @@ export default class Book {
   @Field()
   genre: string;
 
-  @Field()
+  @Field(() => Author)
   author: Author;
 }

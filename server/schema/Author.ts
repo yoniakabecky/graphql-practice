@@ -3,7 +3,7 @@ import Book from "./Book";
 @ObjectType()
 export default class Author {
   @Field(() => ID)
-  id: string;
+  id: number;
 
   @Field()
   name: string;
@@ -11,6 +11,6 @@ export default class Author {
   @Field()
   age: number;
 
-  @Field(() => [Book])
+  @Field(() => [Book], { nullable: true })
   books: Book[];
 }

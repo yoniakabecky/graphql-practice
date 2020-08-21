@@ -1,23 +1,33 @@
 import { Resolver, Query, Arg, FieldResolver, Root } from "type-graphql";
-import { authors, AuthorType, books } from "../data";
+
+import db from "../data/db";
+import { AuthorType } from "../interfaces/author";
 import Author from "../schema/Author";
 
 @Resolver(() => Author)
-export default class {
+export default class AuthorResolver {
   @Query(() => [Author])
-  authors(): AuthorType[] {
-    return authors;
+  async authors() {
+    return await db.from("authors");
   }
 
   @Query(() => Author, { nullable: true })
-  author(@Arg("id") id: string): AuthorType | undefined {
-    return authors.find((author) => author.id === id);
+  async author(@Arg("id") id: string) {
+    const author = await db("authors")
+      .where({ id: parseInt(id) })
+      .first();
+
+    if (!author) return null;
+
+    return author;
   }
 
   @FieldResolver()
-  books(@Root() authorData: AuthorType) {
-    return books.filter((book) => {
-      return book.authorId === authorData.id;
-    });
+  async books(@Root() author: AuthorType) {
+    const books = await db("books").where({ authorId: author.id });
+
+    if (!books) return null;
+
+    return books;
   }
 }
