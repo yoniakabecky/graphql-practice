@@ -1,8 +1,16 @@
-import { Resolver, Query, Arg, FieldResolver, Root } from "type-graphql";
+import {
+  Resolver,
+  Query,
+  Arg,
+  FieldResolver,
+  Root,
+  Mutation,
+} from "type-graphql";
 
 import db from "../data/db";
 import { AuthorType } from "../interfaces/author";
 import Author from "../schema/Author";
+import AuthorInput from "../schema/AuthorInput";
 
 @Resolver(() => Author)
 export default class AuthorResolver {
@@ -13,9 +21,7 @@ export default class AuthorResolver {
 
   @Query(() => Author, { nullable: true })
   async author(@Arg("id") id: string) {
-    const author = await db("authors")
-      .where({ id: parseInt(id) })
-      .first();
+    const author = await db("authors").where({ id }).first();
 
     if (!author) return null;
 
@@ -29,5 +35,17 @@ export default class AuthorResolver {
     if (!books) return null;
 
     return books;
+  }
+
+  @Mutation(() => Boolean)
+  async addAuthor(@Arg("data") { name, age }: AuthorInput) {
+    try {
+      await db("authors").insert({ name, age });
+    } catch (err) {
+      console.log(err);
+      return false;
+    }
+
+    return true;
   }
 }

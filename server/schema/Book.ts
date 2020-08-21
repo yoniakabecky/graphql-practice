@@ -12,6 +12,6 @@ export default class Book {
   @Field()
   genre: string;
 
-  @Field(() => Author)
-  author: Author;
+  @Field()
+  authorId: number;
 }

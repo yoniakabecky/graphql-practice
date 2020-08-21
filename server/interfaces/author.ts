@@ -1,5 +1,5 @@
 export interface AuthorType {
-  id: string;
+  id: number;
   name: string;
   age: number;
 }

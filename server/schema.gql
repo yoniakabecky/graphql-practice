@@ -10,11 +10,27 @@ type Author {
   name: String!
 }
 
+input AuthorInput {
+  age: Float!
+  name: String!
+}
+
 type Book {
-  author: Author!
+  authorId: Float!
   genre: String!
   id: ID!
   name: String!
+}
+
+input BookInput {
+  authorId: Float!
+  genre: String!
+  name: String!
+}
+
+type Mutation {
+  addAuthor(data: AuthorInput!): Boolean!
+  addBook(data: BookInput!): Boolean!
 }
 
 type Query {
