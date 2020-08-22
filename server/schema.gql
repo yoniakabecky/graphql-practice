@@ -16,7 +16,7 @@ input AuthorInput {
 }
 
 type Book {
-  authorId: Float!
+  author: Author!
   genre: String!
   id: ID!
   name: String!

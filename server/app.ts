@@ -2,6 +2,8 @@ import { ApolloServer } from "apollo-server-express";
 import express from "express";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
+
+import { authLoader } from "./loader/authLoader";
 import BookResolver from "./resolvers/BookResolver";
 import AuthorResolver from "./resolvers/AuthorResolver";
 
@@ -15,6 +17,11 @@ async function start() {
 
   const server = new ApolloServer({
     schema,
+    context: ({ req, res }: any) => ({
+      req,
+      res,
+      authLoader: authLoader(),
+    }),
   });
 
   server.applyMiddleware({ app });

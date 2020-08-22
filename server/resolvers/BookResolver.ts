@@ -5,19 +5,21 @@ import {
   FieldResolver,
   Root,
   Mutation,
+  Ctx,
 } from "type-graphql";
 
 import db from "../data/db";
+import { BookType } from "../interfaces/book";
+import Author from "../schema/Author";
 import Book from "../schema/Book";
 import BookInput from "../schema/BookInput";
-// import { BookType } from "../interfaces/book";
-// import Author from "../schema/Author";
+import { MyContext } from "../interfaces/MyContext";
 
 @Resolver(() => Book)
 export default class BookResolver {
   @Query(() => [Book])
   async books() {
-    return await db.from("books");
+    return await db.from("books").select().limit(10);
   }
 
   @Query(() => Book, { nullable: true })
@@ -29,14 +31,10 @@ export default class BookResolver {
     return book;
   }
 
-  // @FieldResolver(() => Author, { complexity: 2 })
-  // async author(@Root() book: BookType) {
-  //   const [author] = await db("authors").where({ id: book.authorId });
-
-  //   if (!author) return null;
-
-  //   return author;
-  // }
+  @FieldResolver(() => Author, { complexity: 2 })
+  async author(@Root() book: BookType, @Ctx() ctx: MyContext) {
+    return ctx.authLoader.load(book.authorId);
+  }
 
   @Mutation(() => Boolean)
   async addBook(@Arg("data") { name, genre, authorId }: BookInput) {
