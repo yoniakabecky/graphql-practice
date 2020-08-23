@@ -1,6 +1,6 @@
 export interface BookType {
-  id: number;
+  id: string;
   name: string;
   genre: string;
-  authorId: number;
+  authorId: string;
 }

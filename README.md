@@ -6,6 +6,7 @@
 - MongoDB (mLab) -> PostgreSQL (ElephantSQL)
 - Mongoose -> Knex
 - DataLoader
+- Graphql Code Generator
 
 ## Memos
 

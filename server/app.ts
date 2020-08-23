@@ -1,4 +1,5 @@
 import { ApolloServer } from "apollo-server-express";
+import cors from "cors";
 import express from "express";
 import "reflect-metadata";
 import { buildSchema } from "type-graphql";
@@ -14,6 +15,9 @@ async function start() {
   });
 
   const app = express();
+
+  // allow cross-origin requests
+  app.use(cors());
 
   const server = new ApolloServer({
     schema,
