@@ -11,3 +11,19 @@ query Authors {
     name
   }
 }
+
+query Book($id: String!) {
+  book(id: $id) {
+    name
+    genre
+    author {
+      id
+      name
+      age
+      books {
+        id
+        name
+      }
+    }
+  }
+}
