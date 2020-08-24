@@ -1,0 +1,9 @@
+input BookInput {
+  name: String!
+  genre: String!
+  authorId: ID!
+}
+
+mutation AddBook($data: BookInput!) {
+  addBook(data: $data)
+}
