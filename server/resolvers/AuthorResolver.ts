@@ -16,7 +16,7 @@ import AuthorInput from "../schema/AuthorInput";
 export default class AuthorResolver {
   @Query(() => [Author])
   async authors() {
-    return await db.from("authors");
+    return await db.from("authors").orderBy("name");
   }
 
   @Query(() => Author, { nullable: true })

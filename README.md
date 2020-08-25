@@ -1,4 +1,6 @@
-# GraphQL Practice
+# GraphQL Practice: Book List App
+
+![final image](/client/finished.png)
 
 ## Added and Changed Skills
 
@@ -7,6 +9,7 @@
 - Mongoose -> Knex
 - DataLoader
 - Graphql Code Generator
+- Tailwind Css
 
 ## Memos
 
@@ -26,6 +29,8 @@
 - Base project idea from tutorial by The Net Ninja [YouTube](https://www.youtube.com/playlist?list=PL4cUxeGkcC9iK6Qhn-QLcXCXPQUov1U7f)
 
 - ElephantSQL and Knex [dev.to](https://dev.to/easybuoy/setting-up-a-node-api-with-postgres-and-knex-588f)
+
+- GraphQL Ecosystem [YouTube](https://www.youtube.com/watch?v=VnG7ej56lWw&feature=youtu.be)
 
 - N+1 Problem by Ben Awad
   - [DataLoader and database joins](https://github.com/benawad/graphql-n-plus-one-example)

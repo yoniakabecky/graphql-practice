@@ -82,6 +82,16 @@ export type AddBookMutation = (
   & Pick<Mutation, 'addBook'>
 );
 
+export type AddAuthorMutationVariables = Exact<{
+  data: AuthorInput;
+}>;
+
+
+export type AddAuthorMutation = (
+  { __typename?: 'Mutation' }
+  & Pick<Mutation, 'addAuthor'>
+);
+
 export type BooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -156,6 +166,36 @@ export function useAddBookMutation(baseOptions?: Apollo.MutationHookOptions<AddB
 export type AddBookMutationHookResult = ReturnType<typeof useAddBookMutation>;
 export type AddBookMutationResult = Apollo.MutationResult<AddBookMutation>;
 export type AddBookMutationOptions = Apollo.BaseMutationOptions<AddBookMutation, AddBookMutationVariables>;
+export const AddAuthorDocument = gql`
+    mutation AddAuthor($data: AuthorInput!) {
+  addAuthor(data: $data)
+}
+    `;
+export type AddAuthorMutationFn = Apollo.MutationFunction<AddAuthorMutation, AddAuthorMutationVariables>;
+
+/**
+ * __useAddAuthorMutation__
+ *
+ * To run a mutation, you first call `useAddAuthorMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useAddAuthorMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [addAuthorMutation, { data, loading, error }] = useAddAuthorMutation({
+ *   variables: {
+ *      data: // value for 'data'
+ *   },
+ * });
+ */
+export function useAddAuthorMutation(baseOptions?: Apollo.MutationHookOptions<AddAuthorMutation, AddAuthorMutationVariables>) {
+        return Apollo.useMutation<AddAuthorMutation, AddAuthorMutationVariables>(AddAuthorDocument, baseOptions);
+      }
+export type AddAuthorMutationHookResult = ReturnType<typeof useAddAuthorMutation>;
+export type AddAuthorMutationResult = Apollo.MutationResult<AddAuthorMutation>;
+export type AddAuthorMutationOptions = Apollo.BaseMutationOptions<AddAuthorMutation, AddAuthorMutationVariables>;
 export const BooksDocument = gql`
     query Books {
   books {

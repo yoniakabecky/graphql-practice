@@ -7,3 +7,13 @@ input BookInput {
 mutation AddBook($data: BookInput!) {
   addBook(data: $data)
 }
+
+input AuthorInput {
+  name: String!
+  age: String!
+  authorId: ID!
+}
+
+mutation AddAuthor($data: AuthorInput!) {
+  addAuthor(data: $data)
+}

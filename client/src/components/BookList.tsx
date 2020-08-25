@@ -9,14 +9,15 @@ export const BookList: React.FC<Props> = () => {
   const [selected, setSelected] = useState("");
 
   return (
-    <div>
-      <ul id="book-list">
+    <div className="flex-grow">
+      <ul className="flex flex-wrap">
         {loading ? (
-          <div>Loading books...</div>
+          <p className="text-gray-600 pt-4 pl-4">loading books...</p>
         ) : (
           data?.books.map((book) => (
             <li
               key={book.id}
+              className="mx-4 my-2 border-solid border-2 rounded-md border-orange-200 px-3 py-2 cursor-pointer text-gray-700 hover:bg-orange-300 hover:border-orange-400 hover:text-orange-600 capitalize"
               onClick={() => {
                 setSelected(book.id);
               }}
@@ -27,11 +28,7 @@ export const BookList: React.FC<Props> = () => {
         )}
       </ul>
 
-      {selected ? (
-        <BookDetails bookId={selected} />
-      ) : (
-        <p>click book name to see the detalis</p>
-      )}
+      {selected && <BookDetails bookId={selected} />}
     </div>
   );
 };
