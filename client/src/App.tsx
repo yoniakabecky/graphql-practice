@@ -13,12 +13,12 @@ const client = new ApolloClient({
 function App() {
   return (
     <ApolloProvider client={client}>
-      <div className="md:w-2/3 h-screen p-6 flex flex-col">
-        <h1 className="mb-5 text-center text-4xl font-bold">Reading List</h1>
+      <div className="main">
+        <h1 className="main-title">Reading List</h1>
 
         <BookList />
 
-        <div className="flex space-x-6">
+        <div className="add-section">
           <AddBook />
 
           <AddAuthor />

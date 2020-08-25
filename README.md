@@ -9,7 +9,7 @@
 - Mongoose -> Knex
 - DataLoader
 - Graphql Code Generator
-- Tailwind Css
+- ~~Tailwind css~~ too big for this project
 
 ## Memos
 
